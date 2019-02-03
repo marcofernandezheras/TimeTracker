@@ -32,7 +32,7 @@ namespace TimeTracker.Util
 
         public void OnCanExecuteChanged()
         {
-            CanExecuteChanged(this, EventArgs.Empty);
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -22,7 +22,11 @@ namespace TimeTracker.ViewModels
         public string Status { get; set; } = "Iniciando...";
 
         #region Managers
-        public ProjectManager ProjManager { get; private set; }
+        public ProjectManager ProjectMan { get; private set; }
+
+        public TaskManager<Project, ProjectManager> TaskMan { get; private set; }
+
+        public TaskManager<Models.Task, TaskManager<Project, ProjectManager>> SubTaskMan { get; private set; }
         #endregion
 
 
@@ -34,9 +38,17 @@ namespace TimeTracker.ViewModels
         {
             var ok = true;
 
-            ProjManager = new ProjectManager();
-            ProjManager.PropertyChanged += Manager_PropertyChanged;
-            ok &= await ProjManager.Init();
+            ProjectMan = new ProjectManager();
+            ProjectMan.PropertyChanged += Manager_PropertyChanged;
+            ok &= await ProjectMan.Init();
+
+            TaskMan = new TaskManager<Project, ProjectManager>(ProjectMan);
+            TaskMan.PropertyChanged += Manager_PropertyChanged;
+            ok &= await TaskMan.Init();
+
+            SubTaskMan = new TaskManager<Models.Task, TaskManager<Project, ProjectManager>>(TaskMan);
+            SubTaskMan.PropertyChanged += Manager_PropertyChanged;
+            ok &= await SubTaskMan.Init();
 
             Status = ok ? "MainVM iniciado correctamente" : "Error al iniciar MainVM";
             return ok;
