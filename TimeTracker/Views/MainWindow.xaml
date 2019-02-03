@@ -10,10 +10,11 @@
         Title="TimeTracker" Height="450" Width="800">
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom">
-            <StatusBarItem/>
-            <TextBlock Text="{Binding Status}" HorizontalAlignment="Right" Width="773" />
+            <StatusBarItem>
+                <TextBlock Text="{Binding Status}" HorizontalAlignment="Right" />
+            </StatusBarItem>
         </StatusBar>
-        <Grid>
+        <Grid Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -21,7 +22,7 @@
             <StackPanel Grid.Column="0" Grid.Row="0">
                 <Calendar />
             </StackPanel>
-            <Grid Grid.Column="1" Grid.Row="0">
+            <Grid Grid.Column="1" Grid.Row="0" Margin="10,0,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
@@ -56,13 +57,13 @@
                     <Label Grid.Column="2" Grid.Row="3" Content="COMENTARIO" />
 
                     <ComboBox Grid.Column="3" Grid.Row="0" IsEditable="True"
-                      ItemsSource="{Binding Projects}"
-                      SelectedItem="{Binding SelectedProject}"
-                      Text="{Binding NewProject, UpdateSourceTrigger=LostFocus}" />
+                      ItemsSource="{Binding ProjManager.Projects}"
+                      SelectedItem="{Binding ProjManager.SelectedProject}"
+                      Text="{Binding ProjManager.NewProject, UpdateSourceTrigger=LostFocus}" />
                     <Button Grid.Column="4" Grid.Row="0" Content="{iconPacks:Material pencil}"
-                            Command="{Binding UpdateProyectcommand}"></Button>
+                            Command="{Binding ProjManager.UpdateProyectcommand}"></Button>
                     <Button Grid.Column="5" Grid.Row="0" Content="{iconPacks:Material delete}"
-                            Command="{Binding DeleteProyectcommand}"></Button>
+                            Command="{Binding ProjManager.DeleteProyectcommand}"></Button>
 
                     <ComboBox Grid.Column="3" Grid.Row="1"/>
                     <ComboBox Grid.Column="3" Grid.Row="2"/>
