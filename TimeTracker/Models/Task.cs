@@ -12,7 +12,7 @@ namespace TimeTracker.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Task()
         {
-            Task1 = new HashSet<Task>();
+            SubTasks = new HashSet<Task>();
             WorkItems = new HashSet<WorkItem>();
         }
 
@@ -32,7 +32,7 @@ namespace TimeTracker.Models
         public virtual Project Project { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Task1 { get; set; }
+        public virtual ICollection<Task> SubTasks { get; set; }
 
         public virtual Task Task2 { get; set; }
 

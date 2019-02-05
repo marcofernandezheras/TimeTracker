@@ -24,7 +24,7 @@ namespace TimeTracker.Models
                 .HasForeignKey(e => e.IdProject);
 
             modelBuilder.Entity<Task>()
-                .HasMany(e => e.Task1)
+                .HasMany(e => e.SubTasks)
                 .WithOptional(e => e.Task2)
                 .HasForeignKey(e => e.IdParent);
 

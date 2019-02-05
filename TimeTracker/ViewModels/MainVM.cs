@@ -29,6 +29,7 @@ namespace TimeTracker.ViewModels
         public TaskManager<Models.Task, TaskManager<Project, ProjectManager>> SubTaskMan { get; private set; }
         #endregion
 
+        public string NewTime { get; set; }
 
         /// <summary>
         /// Load Managers
@@ -49,6 +50,8 @@ namespace TimeTracker.ViewModels
             SubTaskMan = new TaskManager<Models.Task, TaskManager<Project, ProjectManager>>(TaskMan);
             SubTaskMan.PropertyChanged += Manager_PropertyChanged;
             ok &= await SubTaskMan.Init();
+
+            NewTime = DateTime.Now.ToString("HH:mm");
 
             Status = ok ? "MainVM iniciado correctamente" : "Error al iniciar MainVM";
             return ok;
